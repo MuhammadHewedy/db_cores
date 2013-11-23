@@ -1,0 +1,15 @@
+<dataConfig>
+    <dataSource driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/sampledb" user="root" password="system" />
+    <document>
+        <entity name="employees" query="SELECT * FROM employee"
+                deltaQuery="SELECT id from employees WHERE TRANSTIME > '${dataimporter.last_index_time}'">
+            
+			<field column="ID" name="id" />
+            <field column="NAME" name="name" />
+            <field column="CITY" name="city" />
+            <field column="SERVICE_ID" name="service_id" />
+
+	   </entity>
+    </document>
+</dataConfig>
+
