@@ -1,13 +1,17 @@
 <dataConfig>
     <dataSource driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/sampledb" user="root" password="system" />
     <document>
-        <entity name="employees" query="SELECT * FROM employee"
-                deltaQuery="SELECT id from employees WHERE TRANSTIME > '${dataimporter.last_index_time}'">
+        <entity name="employees" pk="ID" 
+				query="SELECT * FROM employees"
+                deltaQuery="SELECT ID from employees WHERE TRANSTIME &gt; '${dih.last_index_time}'"
+				deltaImportQuery="SELECT * FROM employees WHERE ID='${dih.delta.id}'"
+				>
             
-			<field column="ID" name="id" />
-            <field column="NAME" name="name" />
-            <field column="CITY" name="city" />
-            <field column="SERVICE_ID" name="service_id" />
+				<field column="ID" name="id" />
+            	<field column="NAME" name="name" />
+            	<field column="CITY" name="city" />
+            	<field column="SERVICE_ID" name="service_id" />
+				<field column="TRANSTIME" name="transtime" />
 
 	   </entity>
     </document>
